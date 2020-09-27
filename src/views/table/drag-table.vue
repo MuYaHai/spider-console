@@ -8,50 +8,51 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="180px" align="center" label="Date">
+      <el-table-column width="180px" align="center" label="入库时间">
         <template slot-scope="{row}">
-          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="300px" label="Title">
+      <el-table-column min-width="300px" label="评论内容">
         <template slot-scope="{row}">
-          <span>{{ row.title }}</span>
+          <span>{{ row.content }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="110px" align="center" label="Author">
+      <el-table-column width="110px" align="center" label="好友姓名">
         <template slot-scope="{row}">
-          <span>{{ row.author }}</span>
+          <span>{{ row.name }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="100px" label="Importance">
+      <!--       <el-table-column width="100px" label="Importance">
         <template slot-scope="{row}">
           <svg-icon v-for="n in + row.importance" :key="n" icon-class="star" class="icon-star" />
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
-      <el-table-column align="center" label="Readings" width="95">
+      <el-table-column align="center" label="说说ID" width="95">
         <template slot-scope="{row}">
-          <span>{{ row.pageviews }}</span>
+          <span>{{ row.articleId }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" label="Status" width="110">
+      <el-table-column class-name="status-col" label="评论人QQ" width="110">
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
+          <el-tag :type="row.qqNum | statusFilter">
+            {{ row.qqNum }}
           </el-tag>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="Drag" width="80">
+      <!--       <el-table-column align="center" label="Drag" width="80">
         <template slot-scope="{}">
           <svg-icon class="drag-handler" icon-class="drag" />
         </template>
-      </el-table-column>
+      </el-table-column> -->
     </el-table>
+    <pagination v-show="total>0" :total="total" :page-num.sync="listQuery.pageNum" :page-size.sync="listQuery.limit" @pagination="getList" />
     <div class="show-d">
       <el-tag>The default order :</el-tag> {{ oldList }}
     </div>
@@ -62,11 +63,12 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
+import { fetchComment } from '@/api/comment'
 import Sortable from 'sortablejs'
-
+import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 export default {
   name: 'DragTable',
+  components: { Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -80,11 +82,11 @@ export default {
   data() {
     return {
       list: null,
-      total: null,
+      total: 0,
       listLoading: true,
       listQuery: {
-        page: 1,
-        limit: 10
+        pageNum: 1,
+        pageSize: 6
       },
       sortable: null,
       oldList: [],
@@ -97,8 +99,8 @@ export default {
   methods: {
     async getList() {
       this.listLoading = true
-      const { data } = await fetchList(this.listQuery)
-      this.list = data.items
+      const { data } = await fetchComment(this.listQuery)
+      this.list = data.records
       this.total = data.total
       this.listLoading = false
       this.oldList = this.list.map(v => v.id)

@@ -12,7 +12,7 @@ const componentsRouter = {
     icon: 'component'
   },
   children: [
-    {
+    /*     {
       path: 'tinymce',
       component: () => import('@/views/components-demo/tinymce'),
       name: 'TinymceDemo',
@@ -29,7 +29,7 @@ const componentsRouter = {
       component: () => import('@/views/components-demo/json-editor'),
       name: 'JsonEditorDemo',
       meta: { title: 'JSON Editor' }
-    },
+    }, */
     {
       path: 'split-pane',
       component: () => import('@/views/components-demo/split-pane'),
@@ -54,12 +54,12 @@ const componentsRouter = {
       name: 'StickyDemo',
       meta: { title: 'Sticky' }
     },
-    {
+    /*     {
       path: 'count-to',
       component: () => import('@/views/components-demo/count-to'),
       name: 'CountToDemo',
       meta: { title: 'Count To' }
-    },
+    }, */
     {
       path: 'mixin',
       component: () => import('@/views/components-demo/mixin'),
@@ -78,12 +78,12 @@ const componentsRouter = {
       name: 'DragDialogDemo',
       meta: { title: 'Drag Dialog' }
     },
-    {
+    /*     {
       path: 'drag-select',
       component: () => import('@/views/components-demo/drag-select'),
       name: 'DragSelectDemo',
       meta: { title: 'Drag Select' }
-    },
+    }, */
     {
       path: 'dnd-list',
       component: () => import('@/views/components-demo/dnd-list'),

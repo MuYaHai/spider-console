@@ -9,26 +9,26 @@
 
       <el-table-column width="180px" align="center" label="Date">
         <template slot-scope="scope">
-          <span>{{ scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ scope.row.createTime }}</span>
         </template>
       </el-table-column>
 
       <el-table-column width="120px" align="center" label="Author">
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          <span>{{ scope.row.qq }}</span>
         </template>
       </el-table-column>
-
+      <!--
       <el-table-column width="100px" label="Importance">
         <template slot-scope="scope">
           <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon" />
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
       <el-table-column class-name="status-col" label="Status" width="110">
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
+          <el-tag :type="row.spiderQq">
+            {{ row.spiderQq }}
           </el-tag>
         </template>
       </el-table-column>
@@ -36,7 +36,7 @@
       <el-table-column min-width="300px" label="Title">
         <template slot-scope="{row}">
           <router-link :to="'/example/edit/'+row.id" class="link-type">
-            <span>{{ row.title }}</span>
+            <span>{{ row.message }}</span>
           </router-link>
         </template>
       </el-table-column>
@@ -52,12 +52,12 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page-num.sync="listQuery.pageNum" :limit.sync="listQuery.limit" @pagination="getList" />
   </div>
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
+import { fetchLog } from '@/api/log'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
@@ -79,7 +79,7 @@ export default {
       total: 0,
       listLoading: true,
       listQuery: {
-        page: 1,
+        pageNum: 1,
         limit: 20
       }
     }
@@ -90,8 +90,9 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
+      fetchLog(this.listQuery).then(response => {
+        console.log(response.data.records.length)
+        this.list = response.data.records
         this.total = response.data.total
         this.listLoading = false
       })

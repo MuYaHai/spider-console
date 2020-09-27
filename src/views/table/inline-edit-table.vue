@@ -1,39 +1,40 @@
 <template>
   <div class="app-container">
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
-      <el-table-column align="center" label="ID" width="80">
+      <el-table-column align="center" label="ID" width="100">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="180px" align="center" label="Date">
+      <el-table-column width="180px" align="center" label="说说ID">
         <template slot-scope="{row}">
-          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ row.articleId }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="120px" align="center" label="Author">
+      <el-table-column min-width="400px" align="center" label="图片">
         <template slot-scope="{row}">
-          <span>{{ row.author }}</span>
+          <img v-image-preview :src="getImgUrl(row.urlLocal)" style="width: 100px; height: 100px;" alt="图片下失败"></img>
         </template>
       </el-table-column>
 
-      <el-table-column width="100px" label="Importance">
+      <el-table-column width="300px" label="本地图片地址">
         <template slot-scope="{row}">
-          <svg-icon v-for="n in + row.importance" :key="n" icon-class="star" class="meta-item__icon" />
+          <span v-if="row.urlLocal == null || row.urlLocal == ''">图片解析失败，本地未处理下载</span>
+          <span v-else>{{ row.urlLocal }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column class-name="status-col" label="Status" width="110">
+      <!--       <el-table-column class-name="status-col" label="Status" width="110">
         <template slot-scope="{row}">
           <el-tag :type="row.status | statusFilter">
             {{ row.status }}
           </el-tag>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
-      <el-table-column min-width="300px" label="Title">
+      <!-- <el-table-column min-width="300px" label="Title">
         <template slot-scope="{row}">
           <template v-if="row.edit">
             <el-input v-model="row.title" class="edit-input" size="small" />
@@ -49,7 +50,7 @@
           </template>
           <span v-else>{{ row.title }}</span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
       <el-table-column align="center" label="Actions" width="120">
         <template slot-scope="{row}">
@@ -74,14 +75,18 @@
         </template>
       </el-table-column>
     </el-table>
+    <pagination v-show="total>0" :total="total" :page-num.sync="listQuery.pageNum" :page-size.sync="listQuery.limit" @pagination="getList" />
+
   </div>
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
+import { fetchSource } from '@/api/source'
+import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
 export default {
   name: 'InlineEditTable',
+  components: { Pagination },
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -94,11 +99,12 @@ export default {
   },
   data() {
     return {
+      total: 0,
       list: null,
       listLoading: true,
       listQuery: {
-        page: 1,
-        limit: 10
+        pageNum: 1,
+        pageSize: 10
       }
     }
   },
@@ -106,10 +112,14 @@ export default {
     this.getList()
   },
   methods: {
+    getImgUrl(path) {
+      return 'http://localhost:8888/' + path
+    },
     async getList() {
       this.listLoading = true
-      const { data } = await fetchList(this.listQuery)
-      const items = data.items
+      const { data } = await fetchSource(this.listQuery)
+      const items = data.records
+      this.total = data.total
       this.list = items.map(v => {
         this.$set(v, 'edit', false) // https://vuejs.org/v2/guide/reactivity.html
         v.originalTitle = v.title //  will be used when user click the cancel botton

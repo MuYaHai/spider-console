@@ -73,7 +73,7 @@ const constantRoutes = [
 ]
 
 const asyncRoutes = [
-  {
+/*   {
     path: '/permission',
     component: 'layout/Layout',
     redirect: '/permission/index',
@@ -111,9 +111,9 @@ const asyncRoutes = [
         }
       }
     ]
-  },
+  }, */
 
-  {
+/*   {
     path: '/icon',
     component: 'layout/Layout',
     children: [
@@ -124,7 +124,7 @@ const asyncRoutes = [
         meta: { title: 'Icons', icon: 'icon', noCache: true }
       }
     ]
-  },
+  }, */
 
   {
     path: '/components',
@@ -136,24 +136,24 @@ const asyncRoutes = [
       icon: 'component'
     },
     children: [
-      {
+/*       {
         path: 'tinymce',
         component: 'views/components-demo/tinymce',
         name: 'TinymceDemo',
         meta: { title: 'Tinymce' }
-      },
-      {
+      }, */
+/*       {
         path: 'markdown',
         component: 'views/components-demo/markdown',
         name: 'MarkdownDemo',
         meta: { title: 'Markdown' }
-      },
-      {
-        path: 'json-editor',
-        component: 'views/components-demo/json-editor',
-        name: 'JsonEditorDemo',
-        meta: { title: 'Json Editor' }
-      },
+      }, */
+  /*       {
+          path: 'json-editor',
+          component: 'views/components-demo/json-editor',
+          name: 'JsonEditorDemo',
+          meta: { title: 'Json Editor' }
+        }, */
       {
         path: 'split-pane',
         component: 'views/components-demo/split-pane',
@@ -172,18 +172,18 @@ const asyncRoutes = [
         name: 'DropzoneDemo',
         meta: { title: 'Dropzone' }
       },
-      {
+/*       {
         path: 'sticky',
         component: 'views/components-demo/sticky',
         name: 'StickyDemo',
         meta: { title: 'Sticky' }
-      },
-      {
+      }, */
+/*       {
         path: 'count-to',
         component: 'views/components-demo/count-to',
         name: 'CountToDemo',
         meta: { title: 'Count To' }
-      },
+      }, */
       {
         path: 'mixin',
         component: 'views/components-demo/mixin',
@@ -202,12 +202,12 @@ const asyncRoutes = [
         name: 'DragDialogDemo',
         meta: { title: 'Drag Dialog' }
       },
-      {
+/*       {
         path: 'drag-select',
         component: 'views/components-demo/drag-select',
         name: 'DragSelectDemo',
         meta: { title: 'Drag Select' }
-      },
+      }, */
       {
         path: 'dnd-list',
         component: 'views/components-demo/dnd-list',
@@ -252,7 +252,7 @@ const asyncRoutes = [
       }
     ]
   },
-  {
+/*   {
     path: '/nested',
     component: 'layout/Layout',
     redirect: '/nested/menu1/menu1-1',
@@ -312,8 +312,8 @@ const asyncRoutes = [
       }
     ]
   },
-
-  {
+ */
+/*   {
     path: '/example',
     component: 'layout/Layout',
     redirect: '/example/list',
@@ -343,7 +343,7 @@ const asyncRoutes = [
         meta: { title: 'Article List', icon: 'list' }
       }
     ]
-  },
+  }, */
 
   {
     path: '/tab',
@@ -358,7 +358,7 @@ const asyncRoutes = [
     ]
   },
 
-  {
+/*   {
     path: '/error',
     component: 'layout/Layout',
     redirect: 'noRedirect',
@@ -382,8 +382,8 @@ const asyncRoutes = [
       }
     ]
   },
-
-  {
+ */
+/*   {
     path: '/error-log',
     component: 'layout/Layout',
     redirect: 'noRedirect',
@@ -395,9 +395,9 @@ const asyncRoutes = [
         meta: { title: 'Error Log', icon: 'bug' }
       }
     ]
-  },
+  }, */
 
-  {
+/*   {
     path: '/excel',
     component: 'layout/Layout',
     redirect: '/excel/export-excel',
@@ -433,8 +433,8 @@ const asyncRoutes = [
       }
     ]
   },
-
-  {
+ */
+/*   {
     path: '/zip',
     component: 'layout/Layout',
     redirect: '/zip/download',
@@ -448,7 +448,7 @@ const asyncRoutes = [
         meta: { title: 'Export Zip' }
       }
     ]
-  },
+  }, */
 
   {
     path: '/pdf',
@@ -483,7 +483,7 @@ const asyncRoutes = [
     ]
   },
 
-  {
+/*   {
     path: '/clipboard',
     component: 'layout/Layout',
     redirect: 'noRedirect',
@@ -495,7 +495,7 @@ const asyncRoutes = [
         meta: { title: 'Clipboard Demo', icon: 'clipboard' }
       }
     ]
-  },
+  }, */
 
   {
     path: '/i18n',
@@ -510,7 +510,7 @@ const asyncRoutes = [
     ]
   },
 
-  {
+/*   {
     path: 'external-link',
     component: 'layout/Layout',
     children: [
@@ -519,7 +519,7 @@ const asyncRoutes = [
         meta: { title: 'External Link', icon: 'link' }
       }
     ]
-  },
+  }, */
 
   { path: '*', redirect: '/404', hidden: true }
 ]

@@ -79,7 +79,7 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+        meta: { title: '首页', icon: 'dashboard', affix: true }
       }
     ]
   },
@@ -91,7 +91,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/documentation/index'),
         name: 'Documentation',
-        meta: { title: 'Documentation', icon: 'documentation', affix: true }
+        meta: { title: '日志控制台', icon: 'documentation', affix: true }
       }
     ]
   },
@@ -104,7 +104,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/guide/index'),
         name: 'Guide',
-        meta: { title: 'Guide', icon: 'guide', noCache: true }
+        meta: { title: '爬取必要信息输入', icon: 'guide', noCache: true }
       }
     ]
   },
@@ -129,7 +129,7 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
-  {
+/*   {
     path: '/permission',
     component: Layout,
     redirect: '/permission/page',
@@ -170,8 +170,8 @@ export const asyncRoutes = [
       }
     ]
   },
-
-  {
+ */
+  /*   {
     path: '/icon',
     component: Layout,
     children: [
@@ -183,11 +183,11 @@ export const asyncRoutes = [
       }
     ]
   },
-
+ */
   /** when your routing map is too long, you can split it into small modules **/
-  componentsRouter,
-  chartsRouter,
-  nestedRouter,
+  /*   componentsRouter,
+ */ chartsRouter,
+  /*   nestedRouter, */
   tableRouter,
 
   {
@@ -200,12 +200,12 @@ export const asyncRoutes = [
       icon: 'el-icon-s-help'
     },
     children: [
-      {
+      /*       {
         path: 'create',
         component: () => import('@/views/example/create'),
         name: 'CreateArticle',
         meta: { title: 'Create Article', icon: 'edit' }
-      },
+      }, */
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/example/edit'),
@@ -217,7 +217,7 @@ export const asyncRoutes = [
         path: 'list',
         component: () => import('@/views/example/list'),
         name: 'ArticleList',
-        meta: { title: 'Article List', icon: 'list' }
+        meta: { title: '爬取日志信息', icon: 'list' }
       }
     ]
   },
@@ -230,12 +230,12 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/tab/index'),
         name: 'Tab',
-        meta: { title: 'Tab', icon: 'tab' }
+        meta: { title: '表格', icon: 'tab' }
       }
     ]
   },
 
-  {
+  /*   {
     path: '/error',
     component: Layout,
     redirect: 'noRedirect',
@@ -259,8 +259,8 @@ export const asyncRoutes = [
       }
     ]
   },
-
-  {
+ */
+  /*   {
     path: '/error-log',
     component: Layout,
     children: [
@@ -272,8 +272,8 @@ export const asyncRoutes = [
       }
     ]
   },
-
-  {
+ */
+  /*   {
     path: '/excel',
     component: Layout,
     redirect: '/excel/export-excel',
@@ -309,8 +309,8 @@ export const asyncRoutes = [
       }
     ]
   },
-
-  {
+ */
+  /*   {
     path: '/zip',
     component: Layout,
     redirect: '/zip/download',
@@ -326,7 +326,7 @@ export const asyncRoutes = [
       }
     ]
   },
-
+ */
   {
     path: '/pdf',
     component: Layout,
@@ -336,7 +336,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/pdf/index'),
         name: 'PDF',
-        meta: { title: 'PDF', icon: 'pdf' }
+        meta: { title: '驱动下载', icon: 'pdf' }
       }
     ]
   },
@@ -354,12 +354,12 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/theme/index'),
         name: 'Theme',
-        meta: { title: 'Theme', icon: 'theme' }
+        meta: { title: '主题', icon: 'theme' }
       }
     ]
   },
 
-  {
+  /*   {
     path: '/clipboard',
     component: Layout,
     children: [
@@ -370,9 +370,9 @@ export const asyncRoutes = [
         meta: { title: 'Clipboard', icon: 'clipboard' }
       }
     ]
-  },
+  }, */
 
-  {
+  /*   {
     path: 'external-link',
     component: Layout,
     children: [
@@ -382,7 +382,7 @@ export const asyncRoutes = [
       }
     ]
   },
-
+ */
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
